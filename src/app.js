@@ -22,6 +22,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
+var backdoorRouter = require('./routes/backdoor');
+app.use((req, res, next) => {
+  // res.locals.currentUser = req.user || null;
+  res.locals.currentUser = "orianna";
+  next();
+});
+app.use('/backdoor', backdoorRouter);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
