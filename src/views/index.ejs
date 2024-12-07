@@ -9,13 +9,60 @@
   </head>
   <body>
     <h1>Welcome Stranger</h1>
+    <h2>Be our guest...</h2>
+
+    <!--Vamos a poner un boton de Login y uno de Register.--> 
+    <!--Y que se despliegue el div apropriado-->
     
-    <form id="nameForm" method="GET" action="userName">
-      <label form="nameForm" for="currentUserName">Please drop your name here!
-        <input id="currentUserName" type="text" placeholder="Name...">
-      </label>
-    </form>
-    <button type="submit" form="nameForm">Send</button>
+    <!--Log In Start-->
+    <div>
+      <form id="userLoginForm" action="loginUserDDBB" method="POST">
+        <label form="userLoginForm" for="email">
+          Email:
+          <input id="email" name="email" type="text" placeholder="Email..." required>
+        </label>
+        <label form="userLoginForm" for="password">
+          Password:          
+          <input id="password" name="password" type="password" placeholder="Password..." required>
+        </label>
+        <button form="userLoginForm" type="submit">Log In</button>
+      </form>
+    </div>
+    <!--Log In End-->
+
+    <!--Registry Start-->
+    <div>
+      <form id="userRegistryForm" action="registerUserDDBB" method="POST">
+        <label form="userRegistryForm" for="name">
+          Name: 
+          <input id="name" name="name" type="text" placeholder="Name..." required>
+        </label>
+        
+        <label form="userRegistryForm" for="email">
+          Email:
+          <input id="email" name="email" type="text" placeholder="Email..."  required>
+        </label>
+        
+        <label form="userRegistryForm" for="password">
+          Password:
+          <input id="password" name="password" type="password" placeholder="Password..." required>
+        </label>
+
+        <button form="userRegistryForm" type="submit">Register</button>
+      </form>
+    </div>
+    <!--Registry End-->
+
+    <!--Hacer que no sea seleccionable este texto-->
+    <div>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat quam et non odio aliquam possimus quasi explicabo incidunt. Tenetur vel nobis sint libero ipsum quibusdam distinctio amet iste officia maxime?
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Et cum ipsum voluptas quasi voluptatum veniam, culpa aspernatur commodi adipisci rerum provident, quas dolorem. Earum cupiditate at cum possimus quos vero.
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nulla explicabo expedita possimus eum quidem, quasi iste modi facere corporis deleniti nihil voluptatum amet, nesciunt ad consequatur rerum. Dolores, quo ad!
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Cum repellat omnis laboriosam, veniam sed odit aliquid qui iste eveniet cupiditate explicabo optio vitae dignissimos id pariatur, nobis nesciunt. Veniam, nulla?
+      </p>
+    </div>
+
 
   </body>
 </html>
