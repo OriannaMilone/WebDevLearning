@@ -1,11 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width , initial-scale=1.0">
     <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <!--Poner luego un favicon-->
+    <!-- <link rel="img" href="//.ico"> -->
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+    <h1>Welcome Stranger</h1>
+    
+    <form id="nameForm" method="GET" action="userName">
+      <label form="nameForm" for="currentUserName">Please drop your name here!
+        <input id="currentUserName" type="text" placeholder="Name...">
+      </label>
+    </form>
+    <button type="submit" form="nameForm">Send</button>
+
   </body>
 </html>
