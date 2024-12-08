@@ -3,20 +3,8 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-const sqlite3 = require('sqlite3').verbose();
 
-// Conexión a la base de datos
-const db = new sqlite3.Database('./chatingApp.db', (err) => {
-  if (err) {
-    console.error('Error al conectar con la base de datos:', err.message);
-  } else {
-    console.log('Conectado a la base de datos SQLite.');
-  }
-});
-
-
-var indexRouter = require('./routes/index');
-// var usersRouter = require('./routes/users');
+const indexRouter = require('./routes/index');
 
 var app = express();
 
@@ -27,13 +15,16 @@ app.set('view engine', 'ejs');
 app.locals.title = "Learning Web Dev";
 
 app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-// app.use('/users', usersRouter);
+//Middleware to parse bodies requests
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+app.use('/index', indexRouter);
+
 
 
 
