@@ -4,9 +4,19 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-const indexRouter = require('./routes/index');
+const { createServer } = require("http");
+const { Server } = require("socket.io");
 
+var indexRouter = require('./routes/index'); 
+var chatRouter = require('./routes/chat'); // Chat client logic
+const chatSocket = require("./socket/chat"); // Chat server logic
+
+// Inicializar Express y HTTP Server
 var app = express();
+const httpServer = createServer(app);
+const io = new Server(httpServer); // Inicializar Socket.IO
+
+chatSocket(io); // Inicializar el servidor de chat
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -24,9 +34,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use('/index', indexRouter);
-
-
-
+app.use('/chat', chatRouter);
 
 
 // catch 404 and forward to error handler

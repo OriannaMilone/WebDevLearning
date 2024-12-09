@@ -1,0 +1,34 @@
+<!--DOCTYPE html-->
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width , initial-scale=1.0">
+    <title>Chat</title>
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+
+<body>
+    <h1>Bienvenido, <%= user.name %>
+    </h1>
+    <div id="messages" style="height: 300px; overflow-y: auto; border: 1px solid #ccc; padding: 10px;">
+        <% messages.forEach(message=> { %>
+            <p><strong>
+                    <%= message.name %>:
+                </strong>
+                <%= message.content %>
+            </p>
+            <% }) %>
+    </div>
+    <input id="msg" placeholder="Escribe un mensaje">
+    <button id="send">Enviar</button>
+
+    <!-- Pasar datos al cliente -->
+    <script>
+        window.userId = <%= user.id %>;
+        window.chatId = 1; // Suponiendo un chat global
+    </script>
+    <script src="/chat.js"></script>
+</body>
+
+</html>
