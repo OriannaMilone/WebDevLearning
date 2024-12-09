@@ -11,6 +11,10 @@ var indexRouter = require('./routes/index');
 var chatRouter = require('./routes/chat');
 const chatSocket = require("./socket/chat"); 
 
+const debug = require('debug')('appLogs'); // 'appLogs' es el namespace para los logs
+debug('This is a verbose log');
+
+
 var app = express();
 const httpServer = createServer(app);
 const io = new Server(httpServer); // Inicializar Socket.IO

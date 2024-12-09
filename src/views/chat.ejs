@@ -25,7 +25,7 @@
             const messageInput = document.getElementById("message-input");
             const message = messageInput.value;
             if (message.trim()) {
-                socket.emit("new message", { content: message });
+                socket.emit("new message", { chat_id: 1, user_id: 1, content: message });
                 messageInput.value = "";
             }
         };
@@ -37,7 +37,7 @@
             const sendButton = document.getElementById("send-button");
             sendButton.disabled = false; // Reactivar botón
         });
-        
+
         function addMessageToChatBox(username, content) {
             const chatBox = document.getElementById("chat-box");
             const messageElement = document.createElement("div");

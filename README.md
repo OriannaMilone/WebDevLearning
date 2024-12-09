@@ -11,3 +11,18 @@ npx express-generator -v ejs <src>
 ```bash
 npm install express socket.io express-session body-parser
 ```
+
+## Steps to Debug (using debug module) 
+To install debug module:
+```bash
+npm install debug
+```
+Also add the following line in the app.js:
+```javascript
+const debug = require('debug')('appLogs');
+debug('This is a verbose log');
+```
+To excute the code with debug logs:
+```bash
+$env:DEBUG="*"; node app.js
+```
