@@ -40,7 +40,7 @@ module.exports = (io) => {
 
                 messages = messages.map(message => {
                     const user = users.find(u => u.id === message.user_id);
-                    message.username = user ? user.name : 'Unknown'; // Asignar el nombre del usuario o 'Unknown' si no se encuentra
+                    message.username = user ? user.name : 'Unknown'; 
                     return message;
                 });
 
@@ -72,9 +72,4 @@ module.exports = (io) => {
         });
     });
 };
-
-
-//envio y recepción de mensajes
-
-
 

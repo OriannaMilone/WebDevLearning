@@ -1,15 +1,17 @@
+//app.js
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
+var session = require('express-session');
 const { createServer } = require("http");
 const { Server } = require("socket.io");
 
 var indexRouter = require('./routes/index'); 
 var chatRouter = require('./routes/chat');
-const chatSocket = require("./socket/chat"); 
+var loginRouter = require('./routes/login');
+const chatSocket = require('./socket/chat'); 
 
 const debug = require('debug')('appLogs'); // 'appLogs' es el namespace para los logs
 debug('This is a verbose log');
@@ -26,6 +28,13 @@ app.set('view engine', 'ejs');
 
 app.locals.title = "Learning Web Dev";
 
+app.use(session({
+  secret: 'CLAVE_SECRETA', 
+  resave: false,
+  saveUninitialized: true
+}));
+
+
 app.use(logger('dev'));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
@@ -33,7 +42,30 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use('/chat', chatRouter); // Solo uso /chat si no necesitas /index
+
+app.use('/index', indexRouter); 
+app.use('/login', loginRouter);
+app.use('/chat', checkAuthenticated, chatRouter);
+
+
+function checkAuthenticated(req, res, next){
+  console.log(req.session); 
+  if (!req.session.user) {  
+    console.log("User not authenticated")
+    return res.redirect('/login'); 
+  }
+  next();  
+}
+
+app.get('/logout', (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      console.log("==> Error: ", err) 
+    }
+    console.log("==> The user has log out")
+    res.redirect('/index'); 
+  });
+});
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

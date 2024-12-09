@@ -26,3 +26,7 @@ To excute the code with debug logs:
 ```bash
 $env:DEBUG="*"; node app.js
 ```
+After use, to desactivate debug logs:
+```bash
+$env:DEBUG=""
+```

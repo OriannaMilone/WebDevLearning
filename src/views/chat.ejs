@@ -25,7 +25,7 @@
             const messageInput = document.getElementById("message-input");
             const message = messageInput.value;
             if (message.trim()) {
-                socket.emit("new message", { chat_id: 1, user_id: 1, content: message });
+                socket.emit("new message", { chat_id: <%= chat_id %> , user_id: <%= user_id %>, content: message });
                 messageInput.value = "";
             }
         };
