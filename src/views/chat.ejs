@@ -6,37 +6,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width , initial-scale=1.0">
     <title>Chat</title>
-    <script src="/socket.io/socket.io.js"></script> <!-- Socket.IO -->
-    
+    <script src="/socket.io/socket.io.js"></script>
+    <link rel="stylesheet" href="/public/stylesheets/chat.css">
     <script>
-        const socket = io({ query: { chat_id: "<%= chat_id %>" } }); // Pasar chat_id desde Express
+        let socket;
 
-        // Cargar el historial de mensajes
-        socket.on("chat history", (messages) => {
-            const chatBox = document.getElementById("chat-box");
-            chatBox.innerHTML = "";
-            messages.forEach((message) => {
+        // Manejar la selección de un chat
+        function selectChat(chatId) {
+            // Actualizar el título del chat o la interfaz
+            document.getElementById("chat-box").innerHTML = `<p>Cargando mensajes del chat...</p>`;
+
+            // Cerrar el socket anterior si existe
+            if (socket) {
+                socket.disconnect();
+            }
+
+            // Inicializar el nuevo socket con el `chat_id`
+            socket = io({ query: { chat_id: chatId } });
+
+            // Cargar el historial de mensajes
+            socket.on("chat history", (messages) => {
+                const chatBox = document.getElementById("chat-box");
+                chatBox.innerHTML = "";
+                messages.forEach((message) => {
+                    addMessageToChatBox(message.username, message.content);
+                });
+            });
+
+            // Configurar envío de mensajes
+            document.getElementById("send-button").onclick = sendMessage;
+
+            // Configurar recepción de mensajes nuevos
+            socket.on("new message", (message) => {
                 addMessageToChatBox(message.username, message.content);
             });
-        });
+        }
 
-        // Enviar un nuevo mensaje
-        const sendMessage = () => {
+        // Enviar un mensaje
+        function sendMessage() {
             const messageInput = document.getElementById("message-input");
             const message = messageInput.value;
             if (message.trim()) {
-                socket.emit("new message", { chat_id: <%= chat_id %> , user_id: <%= user_id %>, content: message });
+                socket.emit("new message", { content: message });
                 messageInput.value = "";
             }
-        };
-
-        // Recibir mensajes nuevos
-        socket.on("new message", (message) => {
-            addMessageToChatBox(message.username, message.content);
-            // Feedback visual (opcional)
-            const sendButton = document.getElementById("send-button");
-            sendButton.disabled = false; // Reactivar botón
-        });
+        }
 
         function addMessageToChatBox(username, content) {
             const chatBox = document.getElementById("chat-box");
@@ -50,9 +64,27 @@
 </head>
 
 <body>
-    <div id="chat-box"></div>
-    <input type="text" id="message-input" placeholder="Escribe un mensaje">
-    <button id="send-button" onclick="sendMessage()">Enviar</button>
+    <div id="chat-container">
+        <div id="chat-list">
+            <h3>Chats Disponibles</h3>
+            <ul>
+                <% chats.forEach(chat => { %>
+                    <li onclick="selectChat('<%= chat.chat_id %>')">
+                        <%= chat.title %>
+                    </li>
+                <% }); %>
+            </ul>
+        </div>
+        <div id="chat-box-container">
+            <div id="chat-box">
+                <p>Seleccione un chat para comenzar.</p>
+            </div>
+            <div id="chat-input">
+                <input type="text" id="message-input" placeholder="Escribe un mensaje" disabled>
+                <button id="send-button" disabled>Enviar</button>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
