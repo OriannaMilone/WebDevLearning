@@ -1,34 +1,58 @@
-<!--DOCTYPE html-->
+<!--/views/chat.ejs-->
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width , initial-scale=1.0">
     <title>Chat</title>
-    <script src="/socket.io/socket.io.js"></script>
+    <script src="/socket.io/socket.io.js"></script> <!-- Socket.IO -->
+    
+    <script>
+        const socket = io({ query: { chat_id: "<%= chat_id %>" } }); // Pasar chat_id desde Express
+
+        // Cargar el historial de mensajes
+        socket.on("chat history", (messages) => {
+            const chatBox = document.getElementById("chat-box");
+            chatBox.innerHTML = "";
+            messages.forEach((message) => {
+                addMessageToChatBox(message.username, message.content);
+            });
+        });
+
+        // Enviar un nuevo mensaje
+        const sendMessage = () => {
+            const messageInput = document.getElementById("message-input");
+            const message = messageInput.value;
+            if (message.trim()) {
+                socket.emit("new message", { content: message });
+                messageInput.value = "";
+            }
+        };
+
+        // Recibir mensajes nuevos
+        socket.on("new message", (message) => {
+            addMessageToChatBox(message.username, message.content);
+            // Feedback visual (opcional)
+            const sendButton = document.getElementById("send-button");
+            sendButton.disabled = false; // Reactivar botón
+        });
+        
+        function addMessageToChatBox(username, content) {
+            const chatBox = document.getElementById("chat-box");
+            const messageElement = document.createElement("div");
+            messageElement.className = "message";
+            messageElement.innerHTML = `<strong>${username}:</strong> ${content}`;
+            chatBox.appendChild(messageElement);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+    </script>
 </head>
 
 <body>
-    <h1>Bienvenido, <%= user.name %>
-    </h1>
-    <div id="messages" style="height: 300px; overflow-y: auto; border: 1px solid #ccc; padding: 10px;">
-        <% messages.forEach(message=> { %>
-            <p><strong>
-                    <%= message.name %>:
-                </strong>
-                <%= message.content %>
-            </p>
-            <% }) %>
-    </div>
-    <input id="msg" placeholder="Escribe un mensaje">
-    <button id="send">Enviar</button>
-
-    <!-- Pasar datos al cliente -->
-    <script>
-        window.userId = <%= user.id %>;
-        window.chatId = 1; // Suponiendo un chat global
-    </script>
-    <script src="/chat.js"></script>
+    <div id="chat-box"></div>
+    <input type="text" id="message-input" placeholder="Escribe un mensaje">
+    <button id="send-button" onclick="sendMessage()">Enviar</button>
 </body>
 
 </html>

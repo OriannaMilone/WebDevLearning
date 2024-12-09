@@ -1,4 +1,5 @@
 //Chat Server Logic
+//socket/chat.js
 const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database('../chatingApp.db');
 
@@ -10,6 +11,7 @@ module.exports = (io) => {
 
    // Obtener chat_id desde el cliente
     const chat_id = socket.handshake.query.chat_id;
+    console.log(chat_id);
     if (!chat_id) {
       console.error("Chat ID no proporcionado");
       socket.emit("error", { message: "Chat ID requerido" });
@@ -25,26 +27,42 @@ module.exports = (io) => {
         } 
         //Sacar los user_id de los mensajes
         const user_ids = messages.map(message => message.user_id);
-        console.log(user_ids);
-
+        
         //Sacar los nombres de los usuarios
         const placeholders = user_ids.map(() => '?').join(',');
         const userEnvolvedQuery = `SELECT id, name FROM users WHERE id IN (${placeholders})`;
 
-        db.all(userEnvolvedQuery, uni, (err, users) => {
+        db.all(userEnvolvedQuery, user_ids, (err, users) => {
             if (err) {
                 console.error("Error loading user names", err.message);
                 socket.emit("error", { message: "Server error while loading chat history" });
             }
-            //Mapear los nombres de los usuarios a los mensajes
-            messages = messages.map((message, index) => {
-                message.username = users[index].name;
+
+            messages = messages.map(message => {
+                const user = users.find(u => u.id === message.user_id);
+                message.username = user ? user.name : 'Unknown'; // Asignar el nombre del usuario o 'Unknown' si no se encuentra
                 return message;
             });
-            console.log(messages);
+    
             //Enviar historial de mensajes al cliente
             socket.emit("chat history", messages);          
         });  
+
+        socket.on("new message", (messageData) => {
+            // Guardar el mensaje en la base de datos
+            const { content, chat_id, user_id } = messageData;
+            const insertMessageQuery = "INSERT INTO messages (chat_id, user_id, content) VALUES (?, ?, ?)";
+            
+            db.run(insertMessageQuery, [chat_id, user_id, content], function(err) {
+                if (err) {
+                    console.error("Error inserting message:", err.message);
+                    socket.emit("error", { message: "Error sending message" });
+                } else {
+                    // Emitir el mensaje a todos los clientes
+                    io.emit("new message", { username: users[message.user_id].name, content: content });
+                }
+            });
+        });
     });
     
     //Desconexión de un cliente
