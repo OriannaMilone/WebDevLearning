@@ -7,9 +7,15 @@
     <meta name="viewport" content="width=device-width , initial-scale=1.0">
     <title>Chat</title>
     <script src="/socket.io/socket.io.js"></script> <!-- Socket.IO -->
-    
+</head>
+
+<body>
+    <div id="chat-box"></div>
+    <input type="text" id="message-input" placeholder="Escribe un mensaje">
+    <button id="send-button" onclick="sendMessage()">Enviar</button>
+
     <script>
-        const socket = io({ query: { chat_id: "<%= chat_id %>" } }); // Pasar chat_id desde Express
+        const socket = io({ query: { chat_id: "<%= chat_id %>" } }); 
 
         // Cargar el historial de mensajes
         socket.on("chat history", (messages) => {
@@ -25,7 +31,7 @@
             const messageInput = document.getElementById("message-input");
             const message = messageInput.value;
             if (message.trim()) {
-                socket.emit("new message", { chat_id: <%= chat_id %> , user_id: <%= user_id %>, content: message });
+                socket.emit("new message", { chat_id: <%= chat_id %>, user_id: <%= user_id %>, content: message });
                 messageInput.value = "";
             }
         };
@@ -33,7 +39,6 @@
         // Recibir mensajes nuevos
         socket.on("new message", (message) => {
             addMessageToChatBox(message.username, message.content);
-            // Feedback visual (opcional)
             const sendButton = document.getElementById("send-button");
             sendButton.disabled = false; // Reactivar botón
         });
@@ -46,13 +51,16 @@
             chatBox.appendChild(messageElement);
             chatBox.scrollTop = chatBox.scrollHeight;
         }
-    </script>
-</head>
 
-<body>
-    <div id="chat-box"></div>
-    <input type="text" id="message-input" placeholder="Escribe un mensaje">
-    <button id="send-button" onclick="sendMessage()">Enviar</button>
+        // Asignar evento `keydown` después de cargar el DOM
+        document.addEventListener("DOMContentLoaded", () => {
+            document.getElementById('message-input').addEventListener('keydown', function(event) {
+                if (event.key === 'Enter') {
+                    document.getElementById('send-button').click();
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
