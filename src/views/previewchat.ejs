@@ -20,7 +20,7 @@
                 <% chats.forEach((chat)=> { %>
                     <div class="chat" id="<%= chat.id %>">
                         <form action="/previewchat/selectChat" method="POST">
-                            <input type="hidden" name="chat_id" value="<%= chat.chat_id %>">
+                            <input type="hidden" name="chat_id" value="<%= chat.id %>">
                             <button type="submit">
                                 <%= chat.title %>
                             </button>

@@ -47,7 +47,7 @@ app.use(express.json());
 app.use('/index', indexRouter); 
 app.use('/login', loginRouter);
 app.use('/previewchat', checkAuthenticated, previewchatRouter)
-app.use('/chat', previewchatRouter, chatRouter);
+app.use('/chat', checkAuthenticated, chatRouter);
 
 
 function checkAuthenticated(req, res, next){

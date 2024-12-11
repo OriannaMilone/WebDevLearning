@@ -5,28 +5,42 @@ const sqlite3 = require('sqlite3').verbose();
 
 const db = new sqlite3.Database('../chatingApp.db');
 
-router.get('/', function(req, res, next) {
+router.get('/', function (req, res, next) {
     const userData = req.session.user;
-    console.log("ID")
-    console.log(userData.id)
+
     const selectChatsQuery = "SELECT chat_id FROM user_chat WHERE user_id = ?";
-    db.all(selectChatsQuery, [userData.id], (err, chats) =>{
+    db.all(selectChatsQuery, [userData.id], (err, chats) => {
         if (err) {
-            console.error("Server Error: ",  err.message);
+            console.error("Server Error: ", err.message);
             res.status(500).send("Server Error");
         }
-        console.log(chats)
-        //Esto no es lo que hay que mandar, hay que hacer la consulta en chats ahora, 
-        //esta es la consulta de chats para este usuario pero hay que hacerla para el chats ahora, y sacar el title
-        //ya de ahí tambien tendrá su id que mandamos a chat 
-    res.render('previewchat', {chats: chats});
+        const chatIds = chats.map(chat => chat.chat_id);
+        console.log(chatIds);
+
+        if (chatIds.length === 0) {
+            return res.render('previewchat', { chats: [] });
+        }
+
+        const placeholders = chatIds.map(() => '?').join(',');
+        const selectChatInfoQuery = `SELECT id, title FROM chats WHERE id IN (${placeholders})`;
+
+        db.all(selectChatInfoQuery, chatIds, (err, chatInfo) => {
+            if (err) {
+                console.error("Server Error: ", err.message);
+                return res.status(500).send("Server Error");
+            }
+
+            console.log('----------------');
+            console.log(chatInfo);
+            res.render('previewchat', { chats: chatInfo });
+        });
     });
 });
 
-router.post("/selectChat", function(req, res){
+router.post("/selectChat", function (req, res) {
     const chatId = req.body.chat_id;
     console.log(chatId);
-    res.redirect('/chat/' + chat_id);
+    res.redirect('/chat/' + chatId);
 });
 
 module.exports = router;
