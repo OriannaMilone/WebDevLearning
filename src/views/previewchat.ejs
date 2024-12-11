@@ -8,9 +8,35 @@
     <script src="/socket.io/socket.io.js"></script>
     <link rel="stylesheet" href="/public/stylesheets/chat.css">
 </head>
+
 <body>
+    <div>
+        <!--Existing chats START-->
+        <h2>Select a chat</h2>
+
+        <% if (chats.length===0) { %>
+            <p>No chats available. Create a new chat to start!</p>
+            <% } else { %>
+                <% chats.forEach((chat)=> { %>
+                    <div class="chat" id="<%= chat.id %>">
+                        <form action="/previewchat/selectChat" method="POST">
+                            <input type="hidden" name="chat_id" value="<%= chat.chat_id %>">
+                            <button type="submit">
+                                <%= chat.title %>
+                            </button>
+                        <!-- <button onclick="selectChat('<%= chat.id %>')"> -->
+                    </div>
+                <% }); %>
+            <% } %>
+                            <!--Existing chats END-->
+
+                            <!--Manage Chats START-->
+                            <button id="create-chat-bt">Create Chat</button>
+                            <button id="delete-chat-bt">Delete Chat</button>
+                            <!--Manage Chats END-->
+    </div>
 
 
-    
 </body>
+
 </html>

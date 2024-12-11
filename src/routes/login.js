@@ -38,7 +38,7 @@ router.post("/loginUserDDBB", function(req, res){
         username: user.name,
         };
   
-    return res.redirect('/chat');
+    return res.redirect('/previewchat');
 }});
 });
 

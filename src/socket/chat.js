@@ -50,6 +50,7 @@ module.exports = (io) => {
 
                 socket.on("new message", (messageData) => {
                     // Guardar el mensaje en la base de datos
+                    console.log("Nuevo mensaje:", messageData);
                     const { content, chat_id, user_id } = messageData;
                     const insertMessageQuery = "INSERT INTO messages (chat_id, user_id, content) VALUES (?, ?, ?)";
                     const user = users.find(u => u.id === user_id);

@@ -17,21 +17,29 @@
     <script>
         const socket = io({ query: { chat_id: "<%= chat_id %>" } }); 
 
-        // Cargar el historial de mensajes
-        socket.on("chat history", (messages) => {
-            const chatBox = document.getElementById("chat-box");
-            chatBox.innerHTML = "";
-            messages.forEach((message) => {
+            // Cargar el historial de mensajes
+            socket.on("chat history", (messages) => {
+                const chatBox = document.getElementById("chat-box");
+                chatBox.innerHTML = "";
+                messages.forEach((message) => {
+                    addMessageToChatBox(message.username, message.content);
+                });
+            });
+
+            // Configurar envío de mensajes
+            document.getElementById("send-button").onclick = sendMessage;
+
+            // Configurar recepción de mensajes nuevos
+            socket.on("new message", (message) => {
                 addMessageToChatBox(message.username, message.content);
             });
-        });
 
-        // Enviar un nuevo mensaje
-        const sendMessage = () => {
+        // Enviar un mensaje
+        function sendMessage() {
             const messageInput = document.getElementById("message-input");
             const message = messageInput.value;
             if (message.trim()) {
-                socket.emit("new message", { chat_id: <%= chat_id %>, user_id: <%= user_id %>, content: message });
+                socket.emit("new message", { chat_id: <%= chat_id %> , user_id: <%= user_id %>, content: message });
                 messageInput.value = "";
             }
         };

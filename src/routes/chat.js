@@ -7,7 +7,8 @@ const db = new sqlite3.Database('../chatingApp.db');
 
 router.get('/', function(req, res) {
     const userData = req.session.user;
-    res.render('chat', {user_id : userData.id, user_name : userData.username, chat_id : 1});
+    const chatId = req.params.chat_id;
+    res.render('chat', {user_id : userData.id, user_name : userData.username, chat_id : chatId});
 });
 
 // Enviar un mensaje al chat

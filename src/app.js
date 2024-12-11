@@ -10,6 +10,7 @@ const { Server } = require("socket.io");
 
 var indexRouter = require('./routes/index'); 
 var chatRouter = require('./routes/chat');
+var previewchatRouter = require('./routes/previewchat')
 var loginRouter = require('./routes/login');
 const chatSocket = require('./socket/chat'); 
 
@@ -45,7 +46,8 @@ app.use(express.json());
 
 app.use('/index', indexRouter); 
 app.use('/login', loginRouter);
-app.use('/chat', checkAuthenticated, chatRouter);
+app.use('/previewchat', checkAuthenticated, previewchatRouter)
+app.use('/chat', previewchatRouter, chatRouter);
 
 
 function checkAuthenticated(req, res, next){
