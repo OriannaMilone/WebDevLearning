@@ -26,14 +26,6 @@
                 });
             });
 
-            // Configurar envío de mensajes
-            document.getElementById("send-button").onclick = sendMessage;
-
-            // Configurar recepción de mensajes nuevos
-            socket.on("new message", (message) => {
-                addMessageToChatBox(message.username, message.content);
-            });
-
         // Enviar un mensaje
         function sendMessage() {
             const messageInput = document.getElementById("message-input");
