@@ -43,4 +43,15 @@ router.post("/selectChat", function (req, res) {
     res.redirect('/chat/' + chatId);
 });
 
+router.post("/createChat", function (req, res) {
+    const chatId = req.body.chat_id;
+    console.log(chatId);
+
+    //Consulta a la bbdd para meter el chat nuevo en tablas user_chat (a todos los integrantes) y chat.
+
+    //Tiene que redirigirlo al nuevo chat
+    res.redirect('/chat/' + chatId);
+});
+
+
 module.exports = router;
