@@ -56,16 +56,31 @@ p {
   color: white;
 }
 
-.cookie-banner {
-  display: none;  /*Oculto por defecto */
+.cookie-overlay {
   position: fixed;
-  bottom: 0;
+  top: 0;
+  left: 0;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
-  color: white;
-  text-align: center;
-  padding: 30px;
-  z-index: 1000;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* Oscurecer el fondo */
+  display: none; /* Ocultar por defecto */
+  z-index: 9999; /* Asegurarse de que esté por encima de todo */
+}
+
+.cookie-banner {
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 10000; /* Encima del overlay */
+}
+.cookie-banner p {
+  color:rgba(49, 45, 45, 0.92);
 }
 
 .cookie-btn {

@@ -11,10 +11,12 @@
     </div>
 
     <!--Cookies Banner START-->
-    <div id="cookie-banner" class="cookie-banner">
-      <p>This website uses cookies to improve your experience. Do you accept our cookies?</p> 
-      <button id="accept-cookies" class="cookie-btn">Accept</button>
-      <button id="reject-cookies" class="cookie-btn">Denied</button>
+    <div id="cookie-overlay" class="cookie-overlay">
+      <div id="cookie-banner" class="cookie-banner">
+        <p>This website uses cookies to improve your experience. Do you accept our cookies?</p> 
+        <button id="accept-cookies" class="cookie-btn">Accept</button>
+        <button id="reject-cookies" class="cookie-btn">Denied</button>
+      </div>
     </div>
   
     <script>
@@ -22,19 +24,20 @@
         const cookieBanner = document.getElementById('cookie-banner');
         const acceptButton = document.getElementById('accept-cookies')
         const rejectButton = document.getElementById('reject-cookies')
+        const cookieOverlay = document.getElementById('cookie-overlay');
 
         fetch('/check-cookies')
             .then((response) => response.json())
             .then((data) => {
                 if (!data.cookiesAccepted) {
-                    cookieBanner.style.display = 'block';
+                    cookieOverlay.style.display = 'block';
                 }
             });
 
         acceptButton.addEventListener('click', () => {
             fetch('./accept-cookies', { method: 'POST' })
                 .then(() => {
-                    cookieBanner.style.display = 'none';
+                    cookieOverlay.style.display = 'none';
                 })
         });
         rejectButton.addEventListener('click', () => {
