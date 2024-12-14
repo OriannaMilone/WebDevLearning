@@ -1,4 +1,4 @@
-//app.js
+//src/app.js
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -60,6 +60,20 @@ function checkAuthenticated(req, res, next){
   }
   next();  
 }
+
+app.get('/check-cookies', (req, res) => {
+  const cookiesAccepted = req.session.cookiesAccepted || false;
+  res.json({ cookiesAccepted});
+});
+
+app.post('/accept-cookies', (req, res) => {
+  req.session.cookiesAccepted = true;
+  res.sendStatus(200);
+});
+
+app.get('/cookies-rejected', (req, res) => {
+  res.send(200); //Debería redireccionarse de inmediato
+});
 
 app.get('/logout', (req, res) => {
   req.session.destroy((err) => {
