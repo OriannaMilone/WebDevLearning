@@ -4,5 +4,20 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width , initial-scale=1.0">
         <title><%= title %></title>
-        <!-- <link rel="img" href="favicon.ico"> -->
-         
+        
+        <link rel="icon" href="images/favicon.ico">
+        
+        <link rel="stylesheets" href="stylesheets/styles.css">
+        
+        <script src="/socket.io/socket.io.js"></script> <!-- Socket.IO -->
+        
+        <script>
+            document.getElementById('inputField').addEventListener('keydown', function(event) {
+              if (event.key === 'Enter') {
+                  document.getElementById('send-button').click(); 
+              }
+          });
+          </script>
+
+    </head>
+<body> 

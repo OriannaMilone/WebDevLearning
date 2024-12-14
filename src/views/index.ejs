@@ -1,40 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width , initial-scale=1.0">
-        <title><%= title %></title>
-        <!-- <link rel="img" href="favicon.ico"> -->
-    </head>
-  <body>
+<!--viwes/index.js-->
+<%- include('header') %>
     <h1>Welcome Stranger</h1>
     <h2>Be our guest...</h2>
 
     <!--Vamos a poner un boton de Login y uno de Register.-->
     
-    <!--Registry Start-->
-    <div>
-      <form id="userRegistryForm" action="/index/registerUserDDBB" method="POST">
-        <label form="userRegistryForm" for="name">
-          Name: 
-          <input id="name" name="name" type="text" placeholder="Name..." required>
-        </label>
-        
-        <label form="userRegistryForm" for="email">
-          Email:
-          <input id="email" name="email" type="text" placeholder="Email..."  required>
-        </label>
-        
-        <label form="userRegistryForm" for="password">
-          Password:
-          <input id="password" name="password" type="password" placeholder="Password..." required>
-        </label>
-
-        <button form="userRegistryForm" type="submit">Register</button>
-      </form>
-    </div>
-    <!--Registry End-->
-
     <!--Hacer que no sea seleccionable este texto-->
     <div>
       <p>
@@ -45,6 +15,4 @@
       </p>
     </div>
 
-
-  </body>
-</html>
+<%- include('footer') %>

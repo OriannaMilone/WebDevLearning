@@ -1,15 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width , initial-scale=1.0">
-    <title>Chat</title>
-    <script src="/socket.io/socket.io.js"></script>
-    <link rel="stylesheet" href="/public/stylesheets/chat.css">
-</head>
-
-<body>
+<%- include('header') %>
     <div>
         <!--Existing chats START-->
         <h2>Select a chat</h2>
@@ -30,18 +19,15 @@
         <!--Existing chats END-->
 
         <!--Manage Chats START-->
-        <div>
+        <!-- <div>
             <form action="/previewchat/createChat" method="POST"> //multiple tipo de inputs
                 <input type="text" name="chatTitle" value="chatTitle" placeholder="Chat Name...">
-                //Listar los contactos de la bbdd que son los que el usuario puede meter en el grupo
-                <button id="create-chat-bt" type="submit">Create Chat</button>
-            </form>
-            <button id="delete-chat-bt">Delete Chat</button>
-        </div>
+                <!-- Listar los contactos de la bbdd que son los que el usuario puede meter en el grupo -->
+                <!-- <button id="create-chat-bt" type="submit">Create Chat</button> -->
+            <!-- </form> -->
+            <!-- <button id="delete-chat-bt">Delete Chat</button> -->
+        <!-- </div>  -->
         <!--Manage Chats END-->
     </div>
 
-
-</body>
-
-</html>
+<%- include('footer') %>

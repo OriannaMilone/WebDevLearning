@@ -1,19 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width , initial-scale=1.0">
-        <title><%= title %></title>
-        <!-- <link rel="img" href="favicon.ico"> -->
-        <script>
-          document.getElementById('inputField').addEventListener('keydown', function(event) {
-            if (event.key === 'Enter') {
-                document.getElementById('send-button').click(); 
-            }
-        });
-        </script>
-    </head>
-<body>
+<%- include('header') %>
+
     <h1>Welcome Stranger</h1>
     <h2>Be our guest...</h2>
     
@@ -33,5 +19,4 @@
     </div>
     <!--Log In End-->
 
-</body>
-</html>
+<%- include('footer') %>
