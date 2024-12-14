@@ -49,4 +49,9 @@ router.post("/registerUserDDBB", async (req, res) => {
     }
   });
 
-  module.exports = router;
+  router.get('/', function(req, res, next) {
+    const user = req.session.user;
+    res.render('register', {user});
+  });
+
+module.exports = router;

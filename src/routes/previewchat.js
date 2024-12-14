@@ -32,7 +32,7 @@ router.get('/', function (req, res, next) {
 
             console.log('----------------');
             console.log(chatInfo);
-            res.render('previewchat', { chats: chatInfo });
+            res.render('previewchat', { chats: chatInfo, user: userData});
         });
     });
 });

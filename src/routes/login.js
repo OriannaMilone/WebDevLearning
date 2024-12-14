@@ -6,7 +6,8 @@ const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database('../chatingApp.db');
 
 router.get('/', function(req, res, next) {
-    res.render('login');
+    const user = req.session.user;
+    res.render('login', {user});
   });
 
 router.post("/loginUserDDBB", function(req, res){

@@ -12,6 +12,7 @@ var indexRouter = require('./routes/index');
 var chatRouter = require('./routes/chat');
 var previewchatRouter = require('./routes/previewchat')
 var loginRouter = require('./routes/login');
+var registerRouter = require('./routes/register');
 const chatSocket = require('./socket/chat'); 
 
 const debug = require('debug')('appLogs'); // 'appLogs' es el namespace para los logs
@@ -48,6 +49,7 @@ app.use('/index', indexRouter);
 app.use('/login', loginRouter);
 app.use('/previewchat', checkAuthenticated, previewchatRouter)
 app.use('/chat', checkAuthenticated, chatRouter);
+app.use('/register', registerRouter);
 
 
 function checkAuthenticated(req, res, next){
