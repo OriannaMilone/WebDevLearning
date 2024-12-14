@@ -1,0 +1,38 @@
+/* public/stylesheets/styles.css*/
+body {
+  margin: 0;
+  /*color: rgb(46, 46, 139);*/
+  height: 100%;
+  background: linear-gradient(to right, #0f1960, #361255, #ca5305);
+}
+
+.header {
+  background-color: #130446; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
+  text-align: left;
+  padding: 5px;
+}
+
+.header h1 {
+  margin: 10px;
+  color: aliceblue;
+  font-family: courier;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex: 1;
+}
+
+.footer {
+  margin-top: auto;
+  background-color: #130446;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 50px;
+  color: aliceblue; 
+}
