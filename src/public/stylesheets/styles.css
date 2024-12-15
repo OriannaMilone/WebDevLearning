@@ -151,6 +151,56 @@ p {
   height: 400px;
   width: 200;
 }
+
+.mensajes {
+  display: flex;
+  flex-direction: column; 
+  justify-content: flex-end; 
+  background-color:#130446e4;
+  box-shadow: 0px 4px 6px rgba(49, 45, 45, 0.3);
+  margin: 100px 400px;
+  height: 400px; 
+  padding: 10px;
+  border-radius: 5px;
+  color:aliceblue;
+}
+
+#chat-box {
+  overflow-y: auto;
+}
+.send-message-box {
+  display: flex; 
+  align-items: center; 
+  gap: 10px; 
+  background-color: #130446f3;;
+  border: 1px solid #0f1960;
+  border-radius: 5px;
+  padding: 10px;
+  color:aliceblue;
+}
+
+#message-input {
+  flex: 1; 
+  padding: 8px;
+  border: 1px solid #0f1960;
+  border-radius: 5px;
+}
+
+#send-button {
+  border: none;
+  border-radius: 5px;
+  background-color: #0f1960;
+  color: aliceblue;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+#send-button:hover {
+  background-color: rgba(15, 25, 96, 0.8);
+  color: aliceblue;
+}
+
+ 
 .footer {
   margin-top: auto;
   background-color: #130446;
