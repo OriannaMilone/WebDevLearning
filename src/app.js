@@ -80,6 +80,7 @@ app.get('/logout', (req, res) => {
     if (err) {
       console.log("==> Error: ", err) 
     }
+    res.clearCookie('role');
     console.log("==> The user has log out")
     res.redirect('/index'); 
   });

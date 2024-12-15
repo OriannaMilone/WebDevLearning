@@ -42,6 +42,11 @@ body {
   margin-top: 120px;
 }
 
+#admin-content {
+  display: none;
+  color:rgb(248, 239, 231);
+}
+
 p {
   color:rgb(248, 239, 231);
   margin: 5px 5px;

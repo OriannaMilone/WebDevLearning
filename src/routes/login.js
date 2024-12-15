@@ -39,6 +39,14 @@ router.post("/loginUserDDBB", function(req, res){
         username: user.name,
         };
   
+        if (user.name === "admin"){
+            res.cookie('role', 'admin', { httpOnly: true });
+            console.log("rol asignado");
+          } else {
+            res.cookie('role', 'user', { httpOnly: true }); 
+            // res.send('Usuario logueado como User');
+          }
+
     return res.redirect('/previewchat');
 }});
 });

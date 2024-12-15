@@ -1,6 +1,10 @@
 <!--/views/index.js-->
 <%- include('header') %>
     <!--Index Content START-->
+    <div id="admin-content">
+      <h1>Contenido para Administradores</h1>
+    </div>
+
     <div class="info-container">
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat quam et non odio aliquam possimus quasi explicabo incidunt. Tenetur vel nobis sint libero ipsum quibusdam distinctio amet iste officia maxime?
@@ -18,7 +22,7 @@
       aja
       </div>
       <div class="container">
-        <img id="" src="/images/drakeyjosh.jpg" alt="Where's the img?" width="275"  height="300" style="margin: 2%;">
+        <img id="" src="/images/drakeyjosh.jpg" alt="Where's the img?" width="275"  height="280" style="margin: 2%;">
       </div>
     </div>
     <!--Index Content END-->
@@ -58,6 +62,11 @@
         });
 
       });
+
+      const role = getCookie('role');
+      if (role === 'admin') {
+        document.getElementById('admin-content').style.display = 'block';
+      } 
     </script>
     <!--Cookies Banner END-->
 <%- include('footer') %>

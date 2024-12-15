@@ -5,6 +5,8 @@ const sqlite3 = require('sqlite3').verbose();
 
 const db = new sqlite3.Database('../chatingApp.db');
 
+//Si el usuario no tiene chats, tiene que haber una condición o algo, está fallando eso
+
 router.get('/', function (req, res, next) {
     const userData = req.session.user;
 
