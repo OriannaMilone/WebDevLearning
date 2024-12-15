@@ -117,6 +117,28 @@ p {
   background-color: #ec971f;
 }
 
+.central-grid {
+  display: flex; /* Activa Flexbox */
+  justify-content: space-between; /* Distribuye espacio entre las columnas */
+  align-items: flex-start; /* Alinea los elementos al inicio verticalmente */
+  gap: 30px; /* Espacio entre columnas */
+  padding: 10px;
+  background-color:  #130446c5;
+  margin: 40px 40px;
+  border-radius: 5px;
+
+}
+
+.container {
+  flex: 1;
+  color:rgb(248, 239, 231);
+  background-color: #130446;
+  border-radius: 5px;
+  margin: 5px 5px;
+  text-align: center;
+  height: 400px;
+  width: 200;
+}
 .footer {
   margin-top: auto;
   background-color: #130446;
