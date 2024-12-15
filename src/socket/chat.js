@@ -3,7 +3,6 @@
 const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database('../chatingApp.db');
 
-
 //Detectar la conexión de un nuevo cliente
 module.exports = (io) => {
     io.on("connection", (socket) => {

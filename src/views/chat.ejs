@@ -1,9 +1,11 @@
 <%- include('header') %>
 
-    <div id="chat-box"></div>
-    <input type="text" id="message-input" placeholder="Escribe un mensaje">
-    <button id="send-button" onclick="sendMessage()">Enviar</button>
-
+    <div class="mensajes">
+        <div id="chat-box"></div>
+        <input type="text" id="message-input" placeholder="Escribe un mensaje">
+        <button id="send-button" onclick="sendMessage()">Enviar</button>
+    </div>
+    
     <script>
         const socket = io({ query: { chat_id: "<%= chat_id %>" } }); 
 
