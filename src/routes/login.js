@@ -42,8 +42,9 @@ router.post("/loginUserDDBB", function(req, res){
         if (user.name === "admin"){
             res.cookie('role', 'admin', { maxAge: 60 * 60 * 1000 }); // Expira en 1 hora);
             console.log("rol asignado");
-          } else {
-            res.cookie('role', 'user', { httpOnly: true });  //Si conservas el http el cliente no puede leerlo luego
+        } else {
+            res.cookie('role', user.name); //{ httpOnly: true }  Si conservas el http el cliente no puede leerlo luego
+            console.log("Rol personalizado asignado");
             // res.send('Usuario logueado como User');
           }
 
