@@ -22,21 +22,24 @@
 
 <body>
     <div class="wrapper">
-        <div class="header">
-            <h1>Web Development studying</h1>
-        </div>
-        <div class="main-content">
-            <% if (!user) { %>
-                <div class="nav-bar">
-                    <a href="/index" class="btn-nav-bar">Home</a>
-                    <a href="/chat" class="btn-nav-bar">Chat</a>
-                    <a href="/login" class="btn-nav-bar">Log In</a>
-                    <a href="/register" class="btn-nav-bar">Sign Up</a>
+        <!-- <div class="main-content"> -->
+            <div class="top-content">
+                <div class="header">
+                    <h1>Web Development studying</h1>
                 </div>
-                <% } else { %>
+                <% if (!user) { %>
                     <div class="nav-bar">
                         <a href="/index" class="btn-nav-bar">Home</a>
                         <a href="/chat" class="btn-nav-bar">Chat</a>
-                        <a href="/logout" class="btn-nav-bar">Log out</a>
+                        <a href="/login" class="btn-nav-bar">Log In</a>
+                        <a href="/register" class="btn-nav-bar">Sign Up</a>
                     </div>
-                    <% } %>
+                    <% } else { %>
+                        <div class="nav-bar">
+                            <a href="/index" class="btn-nav-bar">Home</a>
+                            <a href="/chat" class="btn-nav-bar">Chat</a>
+                            <a href="/logout" class="btn-nav-bar">Log out</a>
+                        </div>
+                        <% } %>
+            </div>
+            <div class="main-content">
