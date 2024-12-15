@@ -1,9 +1,6 @@
 <!--/views/index.js-->
 <%- include('header') %>
     <!--Index Content START-->
-    <div id="admin-content">
-      <h1>Contenido para Administradores</h1>
-    </div>
 
     <div class="info-container">
       <p>
@@ -62,11 +59,6 @@
         });
 
       });
-
-      const role = getCookie('role');
-      if (role === 'admin') {
-        document.getElementById('admin-content').style.display = 'block';
-      } 
     </script>
     <!--Cookies Banner END-->
 <%- include('footer') %>
