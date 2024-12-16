@@ -2,9 +2,9 @@
 <%- include('header') %>
     <div>
         <!--Existing chats START-->
-        <h2>Select a chat</h2>
+        <h1 id="login-welcome">Select a chat</h1>
 
-        <% if (chats.length===0) { %>
+        <% if (chats.length == 0) { %>
             <p>No chats available. Create a new chat to start!</p>
             <% } else { %>
                 <% chats.forEach((chat)=> { %>

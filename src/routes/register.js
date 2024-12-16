@@ -41,7 +41,8 @@ router.post("/registerUserDDBB", async (req, res) => {
         res.status(400).send("The user is already registered");
       }  
       await registerUser(username, useremail, userpassword);
-      res.status(200).send("User registered successfully.");
+      // res.status(200).send("User registered successfully.");
+      res.redirect('/login');
       
     } catch (err) {
       console.error("Error processing registration:", err.message);

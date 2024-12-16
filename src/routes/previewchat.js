@@ -20,20 +20,18 @@ router.get('/', function (req, res, next) {
         console.log(chatIds);
 
         if (chatIds.length === 0) {
-            return res.render('previewchat', { chats: [] });
+            return res.render('previewchat', { chats: [], user: userData });
         }
 
         const placeholders = chatIds.map(() => '?').join(',');
         const selectChatInfoQuery = `SELECT id, title FROM chats WHERE id IN (${placeholders})`;
-
+        
         db.all(selectChatInfoQuery, chatIds, (err, chatInfo) => {
             if (err) {
                 console.error("Server Error: ", err.message);
                 return res.status(500).send("Server Error");
             }
 
-            console.log('----------------');
-            console.log(chatInfo);
             res.render('previewchat', { chats: chatInfo, user: userData});
         });
     });
