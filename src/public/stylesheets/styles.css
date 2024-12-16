@@ -113,6 +113,7 @@ p {
   font-family: Arial, Helvetica, sans-serif;
   padding-bottom: 1%;
   font-size: medium;
+  text-align: center;
 }
 
 .cookie-btn {
@@ -152,6 +153,43 @@ p {
   width: 200;
 }
 
+.container p {
+  flex: 1;
+  color:rgb(248, 239, 231);
+  padding: 2%;
+  text-align:justify;
+}
+
+#login-welcome {
+  color:aliceblue;
+  text-align: center;
+}
+
+.login-container {
+  display: flex;
+  justify-content: center;  
+}
+
+#send-button-login {
+  border: none;
+  border-radius: 5px;
+  background-color: #0f1960;
+  color: aliceblue;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+#send-button-login:hover {
+  background-color: rgba(15, 25, 96, 0.8);
+  color: aliceblue;
+}
+
+.input-box {
+  width: 200px;
+  height: 30px;
+  border-radius: 5px;
+  box-shadow:#ca5305;
+}
 .mensajes {
   display: flex;
   flex-direction: column; 
@@ -188,7 +226,6 @@ p {
   margin: 5px;
   border-radius: 3px; 
 } 
-
 
 .send-message-box {
   display: flex; 
