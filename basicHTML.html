@@ -1,0 +1,221 @@
+<!DOCTYPE html> <!-- No es propiamente una etiqueta, es una declaración del tipo de documento -->
+<html lang="en"> <!-- Elemento raíz del doc html -->
+    <head> <!-- Contenedor para meta información. No se renderiza. Lo utilizan los navegadores, motores de busqueda (SEO) y otros servicios -->
+        <title>Studying</title> <!-- Es un elemento obligatorio. Es el título que se muestra en la barra del navegador-->
+        <meta charset="UTF-8">  <!-- Aunque no se rendericen, brindan información a las máquinas-->
+        <meta name="description" content="Practicing web development"> 
+        <meta name="keywords" content="HTML, CSS, JavaScript"> <!-- Anteriormente se usaba para que los navegadores clasificaran mejor las páginas a través de KEY WORDS, pero se empezó a usar para Spammmear y ya no se le da importancia-->
+        <meta name="author" content="Orianna M">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Para que se adapte a cualquier dispositivo -->
+
+        <link rel="icon" href="./favicon.ico"> <!-- Imagen(comunmente) que aparece en la barra del navgd. Algo peculiar sobre él, es que cada vez que se carga la página se envían dos solicitudes para cargar la pag en sí, y otra para el favicon-->
+    </head>
+    <body> <!--Todos los elementos que van a ser visibles en la Pag, van contenidos aquí-->
+        <h1>Studying</h1> <!-- Encabezado (los hay del 1-6)-->
+        <h3>Some little styles</h3>
+        <p>Practicing <b>web</b> development </p> <!-- <b> para negrita-->
+        <br> <!-- Salto de línea-->
+        <p>Because I need to <i>pass</i> my <u>web development class</u></p>  <!-- <i> para cursiva, y <u> para subrayar-->
+
+        <h3>Lists:</h3>
+        <h5>Ordered list:</h5>
+        <ol>
+            <li>Introduction to web developmente</li>
+            <li>HTTP</li>
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JavaScript</li>
+            <li>Node.js</li>
+            <li>Accessibility</li>
+        </ol>
+        <h5>Unordered list:</h5>
+            <ul>
+                <li>Cash Me</li>
+                <li>Studying</li>
+                <li>TFG</li>
+            </ul>
+        <h5>Description list:</h5>
+            <dl>
+                <dt>HTML</dt>
+                <dd>Hyper Text Markup Languange</dd>
+                <dt>CSS</dt>
+                <dd>Cascading Style Sheets</dd>
+            </dl>
+        
+        <h3>Images:</h3>
+        <p>Remember the <b>img</b> tag is a void element. Which means, it doesn't need a closing tag, neither a '/'</p>
+        <p>It is formed by three main atributtes:</p>
+        <ul>
+            <li>src: relative path to the image</li>
+            <li>alt: is an alternative text that will be shown in case the image can't be displayed</li>
+            <li>width and height: measurements for the image in pixels</li>
+        </ul>
+        <img id="meme" src="./fine.jpg" alt="Yup! Everything is fine." width="450" height="250">
+        
+        <h3>Tables:</h3>
+        <table>
+            <tr> <!-- Headers of the table -->
+                <th>2*2</th> 
+                <th>5*5</th>
+            </tr>
+            <tr>
+                <td>4</td> <!--Contenido de la tabla-->
+                <td>25</td>
+            </tr>
+        </table>
+
+        <br>
+        <h3>Element "a href"</h3>
+        <p> It is used to create hyperlinks. It has two main attributes:</p>
+        <dl>
+            <dt>href: the URL of the page the link goes to</li>
+                <dd><strong>Never used absolute paths</strong>. Use a relative path</dd>
+                <dd>It can be use to reference Text/Other elements inside the HTML, using ID's
+                    Like: #id_somewhere_in_the_page
+                </dd>
+                <dd>It also has a lot of other things, but these are the basics</dd>
+            <dt>target: where the link will be opened</li>
+                <dd><i>_self</i> opens the link over the actual page. (This is the default config.)</dd>
+                <dd><i>_blank</i> allows the link to open in a new window</dd>
+            <dt>download: the browser will treat the URL like an element to be downloaded. It can be used as a compact atribute or a description can also be added</dt>    
+        </dl>
+        <a href="#meme">Already missing the meme?</a>
+        <a href="https://f1tv.formula1.com/" target="_blank">F1 TV</a>
+        <p> 'Cause... Why not?
+            You can also reference phone numbers and mails, even with subjects pre-written
+        </p>
+        <a href="tel:+640570879">Call me</a>
+        <a href="mailto:me@yes.com?subject=Hi Buddy">Mail me</a>
+    
+        <h3>Element DIV</h3>
+        <p>It is used as a container o seccion, for other elements. It is usefull to group elements and display them with a common style/configuration. </p>
+        <div>
+            <h3>ID's and Classes</h3>
+            <p>Are the principal ways to identify elements in HTML.</p>
+                <dl>
+                    <dt>ID</dt>
+                    <dd>It is unique for each element. It is used to identify a single element</dd>
+                    <dt>Class</dt>
+                    <dd>It can be used for multiple elements. It is used to identify a group of elements</dd>
+                </dl>
+            <p>They are handy when you need to interact later on with the element, as much as it is to add somekind of feature or style</p>
+        </div>
+        
+        <h3>Element SPAN</h3>
+        <p>It is a line container. It is recurrently employ to remark a piece of text or document.
+            It basically works as a <b>div</b> but for inline elements. Its most frecuent use is to applay styles. 
+            Such as: <span style="color:blueviolet">Orianna is pretty</span>
+        </p>
+
+        <h3>Element Button:</h3>
+        <p>It is used to create a clickable button. It can be used to submit forms, or to trigger a JavaScript function</p>
+        <button onclick="alert('Hello!')">Click me!</button>
+        
+        <h3>Element Form:</h3>
+        <p>It is used to collect user input. It has two main atributtes:</p>
+        <dl>
+            <dt>action</dt>
+            <dd>It is the URL where the form data will be sent.
+                Regularly this is a API or a server-site script that will process the data.
+                It is also important and preferable to use <b>absolute paths.</b>
+            </dd>
+            <dt>method</dt>
+            <dd>It is the HTTP method used to send the data. It can be GET or POST
+                <ul>
+                    <li>GET: sends the data through (and visible) the URL in a query string. 
+                        <p>Somethin like: "https://example.com/action_page.php?name=Juan&age=25"
+                            It clearly is not secure. It can only hold around 2000 characters, and can be use when the data is not sensitive.</p>
+                    </li>
+                    <li>POST: sends the data through the HTTP body request.
+                        <p>This is more secure than the GET method, as the data is at first not visible; but it is important to mention that if the data
+                            is not encrypted it can be intercepted. The solution is to use secure connections such as HTTPS. Also it can hold more data.
+                        </p>
+                    </li>
+                </ul>
+            </dd>
+            <h4>This are tags, associated with forms, but they are not just attributes</h4>
+            <dt>label</dt>
+            <dd>It is used to describe the input field. It is important for accessibility, as it helps screen readers to understand the form
+                <ul>
+                    <li>for: element's id. The element which will receive the information</li>
+                    <li>form: it references the id of the form where it belongs
+                        <p>It is redundant to use it here, but in cases like buttons the attribute makes sense</p>
+                    </li>
+                </ul>
+            </dd> 
+            <dt>input</dt>
+            <dd>It is used to create an input field. It has several types:
+                <ul>
+                    <li>text: a single line text field
+                        <p>When this one is use, is also peer with <i>placeholder</i> that is the text inside de box, to explain again, what is expected there</p>
+                    </li>
+                    <li>password: a single line text field, but the text is hidden</li>
+                    <li>radio: a radio button</li>
+                    <li>checkbox: a checkbox</li>
+                    <li>submit: a submit button</li>
+                    <li>file: a file upload field</li>
+                    <li>hidden: a hidden field</li>
+                    <li>date: a date field</li>
+                    <li>number: a number field</li>
+                </ul>  
+            <p>It also has the <i>required</i> attribute, that makes the field mandatory
+                Or the <i>minlength</i> and <i>maxlength</i> attributes, that limit the number of characters that can be written in the field.
+            </p>    
+            </dd>
+        </dl>
+
+        <form id="form_one" action="" method="GET">
+            <label form="form_one" for="name">
+                Name: 
+                <input type="text" id="name" placeholder="Hey! write your name">
+            </label>
+        </form>
+        <button form="form_one" type="submit">Send Info</button>
+        
+        <h3>Element Select:</h3>
+        <p> It is used to create a dropdown list. It has two main attributes:
+            <ul>
+                <li>id: its use, is to associated a label, to the form</li>
+                <li>name: it is used to associated the selected value with a specific field of the form when it's send to the server</li>
+            </ul>   
+        </p>
+        <label for="Fruits">Choose a fruit:</label>
+        <select id="Fruits" name="fav_fruit">
+            <option value="strawberry">Strawberry</option>
+            <option value="banana">Banana</option>
+            <option value="grapes">Grapes</option>
+        </select>
+
+        <h3>Anothe elements:</h3>
+        <h4>Content Structure</h4>
+            <p>The next elements, are crucial for designing the page skeleton's/structure. Also, it helps keeping a normalized pattern among resources.</p>
+            <label>This elements are:</label>
+            <br>
+            <dl>
+                <dt>Header: &lt;header&gt;</dt>
+                <dt>Nav: &lt;nav&gt;</dt>
+                <dd>Its purpose is to hold navegation icons, menus, content tabs...</dd>
+                <dt>Section: &lt;section&gt;</dt>
+                <dd>Similar to a div, it defines a block of space to hold other HTML elements</dd>
+                <dt>Article: &lt;article&gt;</dt>
+                <dd>Bears a post, doc, comment...</dd>
+                <dt>Aside: &lt;aside&gt;</dt>
+                <dd>Lateral menu</dd>
+                <dt>Footer: &lt;footer&gt;</dt>
+                <dd>Grasps the authors information, and other items.</dd> 
+            </dl>
+        
+        <h3>Audio & Visual elements</h3>
+        <p>&lt;audio controls src="/media/cc0-audio/t-rex-roar.mp3"&gt;&lt;/audio&gt;
+            &lt;video controls width="250">
+            &lt;source src="/media/cc0-videos/flower.webm" type="video/webm" /&gt;
+            &lt;source src="/media/cc0-videos/flower.mp4" type="video/mp4" /&gt;
+                Download the
+                &lt;a href="/media/cc0-videos/flower.webm"&gt;WEBM&lt;/a&gt; or
+                &lt;a href="/media/cc0-videos/flower.mp4"&gt;MP4&lt;/a&gt; video.
+                &lt;/video&gt;
+        </p>
+        
+    </body>
+
+</html>

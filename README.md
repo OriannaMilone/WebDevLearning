@@ -30,3 +30,8 @@ After use, to desactivate debug logs:
 ```bash
 $env:DEBUG=""
 ```
+
+## to install sqlite3
+```bash 
+npm install sqlite3
+```
